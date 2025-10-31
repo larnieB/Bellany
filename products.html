@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products | Bellany Baby Delights</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    :root {
+      --baby-pink: #f9c5d1;
+      --baby-blue: #a5d8ff;
+      --soft-white: #fffdfd;
+    }
+
+    /* Loader */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, var(--baby-pink), var(--baby-blue));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      z-index: 100;
+      text-align: center;
+    }
+
+    .loader-text span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: letterAppear 1s ease forwards;
+    }
+
+    @keyframes letterAppear {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .loading-line {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .dot {
+      opacity: 0;
+      animation: blink 1.4s infinite;
+    }
+
+    .dot:nth-child(1) { animation-delay: 0s; }
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes blink {
+      0%, 20% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .fade-out { animation: fadeOut 1s forwards; }
+    @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+
+    /* Floating buttons */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: white;
+      background-color: #25D366;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      animation: bounce 2s infinite;
+      z-index: 50;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+      background-color: #22bb55;
+    }
+
+    @keyframes bounce {
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+    }
+  </style>
+</head>
+
+<body class="font-sans text-gray-800">
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-text text-white text-3xl font-bold">
+      <span style="animation-delay:0s;">B</span>
+      <span style="animation-delay:0.1s;">E</span>
+      <span style="animation-delay:0.2s;">L</span>
+      <span style="animation-delay:0.3s;">L</span>
+      <span style="animation-delay:0.4s;">A</span>
+      <span style="animation-delay:0.5s;">N</span>
+      <span style="animation-delay:0.6s;">Y</span>
+      <span>&nbsp;</span>
+      <span style="animation-delay:0.7s;">B</span>
+      <span style="animation-delay:0.8s;">A</span>
+      <span style="animation-delay:0.9s;">B</span>
+      <span style="animation-delay:1s;">Y</span>
+    </div>
+    <div class="loading-line">
+      Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div id="main-content" class="opacity-0 transition-opacity duration-1000">
+
+    <!-- Navbar -->
+    <header class="bg-white shadow fixed w-full z-40">
+      <div class="container mx-auto flex justify-between items-center p-4">
+        <a href="index.html" class="text-2xl font-bold text-pink-500">Bellany Baby Delights</a>
+        <nav class="space-x-6 hidden md:flex">
+          <a href="index.html" class="hover:text-pink-500">Home</a>
+          <a href="products.html" class="text-pink-600 font-semibold">Products</a>
+          <a href="index.html#contact" class="hover:text-pink-500">Contact</a>
+        </nav>
+        <button id="menuToggle" class="md:hidden text-3xl text-pink-500 focus:outline-none">☰</button>
+      </div>
+
+      <div id="mobileMenu" class="mobile-menu bg-white border-t border-gray-200 md:hidden hidden">
+        <nav class="flex flex-col items-center space-y-4 py-4">
+          <a href="index.html" onclick="toggleMenu()" class="hover:text-pink-500">Home</a>
+          <a href="products.html" onclick="toggleMenu()" class="text-pink-600 font-semibold">Products</a>
+          <a href="index.html#contact" onclick="toggleMenu()" class="hover:text-pink-500">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="pt-24 bg-gradient-to-br from-pink-50 to-blue-50 text-center py-16">
+      <h1 class="text-4xl font-bold text-pink-600">Our Lovely Baby Products</h1>
+      <p class="text-gray-600 mt-3 text-lg">Soft, Safe, and Stylish — just like your little one!</p>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <!-- Product Card -->
+        <div class="bg-pink-50 rounded-lg shadow hover:shadow-lg overflow-hidden transition">
+          <img src="014a06d2-eb32-4c7d-b90a-66071c4c5286.jpg" alt="Product 1" class="w-full h-64 object-cover">
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-pink-600">Baby Dress</h3>
+            <p class="text-gray-600 mt-1">Soft cotton, perfect for newborns.</p>
+            <button class="mt-3 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-400 transition">View Details</button>
+          </div>
+        </div>
+
+        <div class="bg-pink-50 rounded-lg shadow hover:shadow-lg overflow-hidden transition">
+          <img src="download (3).jpg" alt="Product 2" class="w-full h-64 object-cover">
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-pink-600">Baby Shoes</h3>
+            <p class="text-gray-600 mt-1">Soft soles for comfort and care.</p>
+            <button class="mt-3 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-400 transition">View Details</button>
+          </div>
+        </div>
+
+        <div class="bg-pink-50 rounded-lg shadow hover:shadow-lg overflow-hidden transition">
+          <img src="PRICES MAY VARY_ 👍【100% Health-safe Food-grade….jpg" alt="Product 3" class="w-full h-64 object-cover">
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-pink-600">Feeding Set</h3>
+            <p class="text-gray-600 mt-1">Complete feeding kit for infants.</p>
+            <button class="mt-3 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-400 transition">View Details</button>
+          </div>
+        </div>
+
+        <div class="bg-pink-50 rounded-lg shadow hover:shadow-lg overflow-hidden transition">
+          <img src="e4dbbd00-c199-4952-beed-14887f0ae4ee.jpg" alt="Product 4" class="w-full h-64 object-cover">
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-pink-600">Baby Blanket</h3>
+            <p class="text-gray-600 mt-1">Warm and gentle on baby’s skin.</p>
+            <button class="mt-3 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-400 transition">View Details</button>
+          </div>
+        </div>
+
+        <div class="bg-pink-50 rounded-lg shadow hover:shadow-lg overflow-hidden transition">
+          <img src="Our electric racing car uses a 12V battery-powered….jpg" alt="Product 5" class="w-full h-64 object-cover">
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-pink-600">Baby Toy</h3>
+            <p class="text-gray-600 mt-1">Fun & colorful toys for toddlers.</p>
+            <button class="mt-3 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-400 transition">View Details</button>
+          </div>
+        </div>
+
+        <div class="bg-pink-50 rounded-lg shadow hover:shadow-lg overflow-hidden transition">
+          <img src="Black Friday Baby Carrier Deals  Black Friday Baby….jpg" alt="Product 6" class="w-full h-64 object-cover">
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-pink-600">Baby Carrier</h3>
+            <p class="text-gray-600 mt-1">Comfortable baby wrap for moms.</p>
+            <button class="mt-3 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-400 transition">View Details</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-pink-500 text-white text-center py-4">
+      <p>&copy; 2025 Bellany Baby Delights. All rights reserved.</p>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/254702585648" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Script -->
+  <script>
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      const main = document.getElementById("main-content");
+      setTimeout(() => {
+        loader.classList.add("fade-out");
+        setTimeout(() => {
+          loader.style.display = "none";
+          main.classList.remove("opacity-0");
+        }, 1000);
+      }, 2000);
+    });
+
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+</body>
+</html>
